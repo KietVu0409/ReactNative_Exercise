@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 02</title>
+</head>
+<body>
+    <h1>Máy Tính Tiền Tip</h1>
+    <button onclick="calculateTips()">Tính Tiền Tip</button>
+    <p id="result"></p>
+
+    <script>
+        const calcTip = bill => (bill >= 50 && bill <= 300) ? bill * 0.15 : bill * 0.2;
+
+        const bills = [125, 555, 44];
+
+        const tips = bills.map(calcTip);
+
+        const total = bills.map((bill, index) => bill + tips[index]);
+
+        const calculateTips = () => {
+            const result = `
+                <h3>Dữ liệu kiểm tra:</h3>
+                <p><strong>Hoá đơn:</strong> ${bills.join(', ')}</p>
+                <p><strong>Tiền tip:</strong> ${tips.map(tip => tip.toFixed(2)).join(', ')}</p>
+                <p><strong>Tổng giá trị:</strong> ${total.map(val => val.toFixed(2)).join(', ')}</p>
+            `;
+            document.getElementById('result').innerHTML = result;
+        };
+    </script>
+</body>
+</html>
