@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 01</title>
+</head>
+<body>
+    <h1>Dự Đoán Thời Tiết</h1>
+    <button onclick="displayForecast()">Hiển Thị Dự Đoán</button>
+    <p id="result"></p>
+
+    <script>
+        // Hàm 'printForecast'
+        const printForecast = arr => {
+ 
+            const forecastStrings = arr.map((temp, index) => `${temp}oC trong ${index + 1} ngày`);
+
+            return forecastStrings.join(' ... ');
+        };
+
+        const displayForecast = () => {
+            const data1 = [17, 21, 23];
+            const data2 = [12, 5, -5, 0, 4];
+
+            const result1 = printForecast(data1);
+            const result2 = printForecast(data2);
+
+            document.getElementById('result').innerHTML = `
+                <h3>Dự Đoán Thời Tiết Dữ Liệu 1:</h3>
+                <p>${result1}</p>
+                <h3>Dự Đoán Thời Tiết Dữ Liệu 2:</h3>
+                <p>${result2}</p>
+            `;
+        };
+    </script>
+</body>
+</html>
