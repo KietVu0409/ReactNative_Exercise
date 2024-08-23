@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 03</title>
+</head>
+<body>
+    <h1>So Sánh BMI</h1>
+    <button onclick="compareBMI()">So Sánh BMI</button>
+    <p id="result"></p>
+
+    <script>
+  
+        const mark = {
+            fullName: 'Mark Miller',
+            mass: 78,
+            height: 1.69,
+            calcBMI() {
+                this.BMI = this.mass / (this.height ** 2);
+                return this.BMI;
+            }
+        };
+
+        const john = {
+            fullName: 'John Smith',
+            mass: 92,
+            height: 1.95,
+            calcBMI() {
+                this.BMI = this.mass / (this.height ** 2);
+                return this.BMI;
+            }
+        };
+
+
+        const compareBMI = () => {
+            const bmiMark = mark.calcBMI();
+            const bmiJohn = john.calcBMI();
+
+            let result;
+            if (bmiMark > bmiJohn) {
+                result = `${mark.fullName}'s BMI (${bmiMark.toFixed(1)}) is higher than ${john.fullName}'s (${bmiJohn.toFixed(1)})!`;
+            } else if (bmiJohn > bmiMark) {
+                result = `${john.fullName}'s BMI (${bmiJohn.toFixed(1)}) is higher than ${mark.fullName}'s (${bmiMark.toFixed(1)})!`;
+            } else {
+                result = `Both ${mark.fullName} and ${john.fullName} have the same BMI (${bmiMark.toFixed(1)})!`;
+            }
+
+            document.getElementById('result').innerText = result;
+        };
+    </script>
+</body>
+</html>
