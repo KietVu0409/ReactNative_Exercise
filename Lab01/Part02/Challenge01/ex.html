@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 01</title>
+</head>
+<script>
+    //Tạo hàm mũi tên để tính toán điểm trung bình
+    const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
+
+    //Tính điểm trung bình cho cả hai đội
+    const avgDolphins1 = calcAverage(44, 23, 71);
+    const avgKoalas1 = calcAverage(65, 54, 49);
+
+    const avgDolphins2 = calcAverage(85, 54, 41);
+    const avgKoalas2 = calcAverage(23, 34, 27);
+
+    //Tạo hàm để kiểm tra đội thắng cuộc
+    const checkWinner = (avgDolphins, avgKoalas) => {
+        if (avgDolphins >= 2 * avgKoalas) {
+            return `Dolphins win (${avgDolphins.toFixed(2)} vs. ${avgKoalas.toFixed(2)})`;
+        } else if (avgKoalas >= 2 * avgDolphins) {
+            return `Koalas win (${avgKoalas.toFixed(2)} vs. ${avgDolphins.toFixed(2)})`;
+        } else {
+            return "No team wins!";
+        }
+    };
+
+    const checkWinners = () => {
+        const result1 = checkWinner(avgDolphins1, avgKoalas1);
+        const result2 = checkWinner(avgDolphins2, avgKoalas2);
+        document.getElementById('result').innerHTML = `
+            <h3>Data 1:</h3>
+            <p>${result1}</p>
+            <h3>Data 2:</h3>
+            <p>${result2}</p>
+        `;
+        
+    };
+</script>
+<body>
+    <h1>Máy Tính Điểm Thể Dục</h1>
+    
+    <h2>Data 1</h2>
+    <p>Dolphins điểm: 44, 23, 71</p>
+    <p>Koalas điểm: 65, 54, 49</p>
+    
+    <h2>Data 2</h2>
+    <p>Dolphins điểm: 85, 54, 41</p>
+    <p>Koalas điểm: 23, 34, 27</p>
+
+    <button onclick="checkWinners()">Tính Kết Quả</button>
+    <p id="result"></p>
+</body>
+</html>
