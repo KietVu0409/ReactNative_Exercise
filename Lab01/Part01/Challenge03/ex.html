@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 03</title>
+</head>
+<script>
+    function calculateAverage(scores) {
+        const total = scores.reduce((sum, score) => sum + score, 0);
+        return total / scores.length;
+    }
+
+    function compareScores(team1Scores, team2Scores, minScore = 100) {
+        const avgTeam1 = calculateAverage(team1Scores);
+        const avgTeam2 = calculateAverage(team2Scores);
+        
+        if (avgTeam1 >= minScore && avgTeam2 >= minScore) {
+            if (avgTeam1 > avgTeam2) {
+                return `Dolphins có điểm số trung bình (${avgTeam1.toFixed(2)}) cao hơn Koalas (${avgTeam2.toFixed(2)})!`;
+            } else if (avgTeam2 > avgTeam1) {
+                return `Koalas có điểm số trung bình (${avgTeam2.toFixed(2)}) cao hơn Dolphins (${avgTeam1.toFixed(2)})!`;
+            } else {
+                return `Dolphins và Koalas hòa nhau với điểm số trung bình (${avgTeam1.toFixed(2)})!`;
+            }
+        } else if (avgTeam1 >= minScore && avgTeam2 < minScore) {
+            return `Dolphins thắng vì điểm số trung bình (${avgTeam1.toFixed(2)}) đạt yêu cầu tối thiểu (${minScore})!`;
+        } else if (avgTeam2 >= minScore && avgTeam1 < minScore) {
+            return `Koalas thắng vì điểm số trung bình (${avgTeam2.toFixed(2)}) đạt yêu cầu tối thiểu (${minScore})!`;
+        } else {
+            return `Không có đội nào đạt yêu cầu tối thiểu (${minScore}) và không có đội nào giành chiến thắng!`;
+        }
+    }
+
+    function compareScoresData1() {
+        const dolphinsScores1 = [96, 108, 89];
+        const koalasScores1 = [88, 91, 110];
+        const result = compareScores(dolphinsScores1, koalasScores1);
+        document.getElementById("resultData1").innerHTML = result;
+    }
+
+    function compareScoresBonus1() {
+        const dolphinsScoresBonus1 = [97, 112, 101];
+        const koalasScoresBonus1 = [109, 95, 123];
+        const result = compareScores(dolphinsScoresBonus1, koalasScoresBonus1, 100);
+        document.getElementById("resultBonus1").innerHTML = result;
+    }
+
+    function compareScoresBonus2() {
+        const dolphinsScoresBonus2 = [97, 112, 101];
+        const koalasScoresBonus2 = [109, 95, 106];
+        const result = compareScores(dolphinsScoresBonus2, koalasScoresBonus2, 100);
+        document.getElementById("resultBonus2").innerHTML = result;
+    }
+</script>
+<body>
+    <h1>So sánh điểm số thể dục</h1>
+    
+    <h2>Dữ liệu 1</h2>
+    <button onclick="compareScoresData1()">So sánh điểm số Dữ liệu 1</button>
+    <div id="resultData1"></div>
+    
+    <h2>Dữ liệu Bonus 1</h2>
+    <button onclick="compareScoresBonus1()">So sánh điểm số Bonus 1</button>
+    <div id="resultBonus1"></div>
+
+    <h2>Dữ liệu Bonus 2</h2>
+    <button onclick="compareScoresBonus2()">So sánh điểm số Bonus 2</button>
+    <div id="resultBonus2"></div>
+</body>
+</html>
