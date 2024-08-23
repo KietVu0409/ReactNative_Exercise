@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 04</title>
+</head>
+<body>
+    <h1>Cải Tiến Máy Tính Tiền Tip</h1>
+    <button onclick="calculateTipsAndTotals()">Tính Tiền Tip và Tổng Giá Trị</button>
+    <p id="result"></p>
+
+    <script>
+
+        const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+        const tips = [];
+        const totals = [];
+
+        const calcTip = bill => (bill >= 50 && bill <= 300) ? bill * 0.15 : bill * 0.2;
+
+        for (let i = 0; i < bills.length; i++) {
+            const tip = calcTip(bills[i]);
+            tips.push(tip);
+            totals.push(bills[i] + tip);
+        }
+
+        const calcAverage = arr => {
+            let sum = 0;
+            for (let i = 0; i < arr.length; i++) {
+                sum += arr[i];
+            }
+            return sum / arr.length;
+        };
+
+        const calculateTipsAndTotals = () => {
+            const averageTotal = calcAverage(totals);
+            const result = `
+                <h3>Dữ liệu kiểm tra:</h3>
+                <p><strong>Hoá đơn:</strong> ${bills.join(', ')}</p>
+                <p><strong>Tiền tip:</strong> ${tips.map(tip => tip.toFixed(2)).join(', ')}</p>
+                <p><strong>Tổng giá trị:</strong> ${totals.map(total => total.toFixed(2)).join(', ')}</p>
+                <p><strong>Trung bình tổng giá trị:</strong> ${averageTotal.toFixed(2)}</p>
+            `;
+            document.getElementById('result').innerHTML = result;
+        };
+    </script>
+</body>
+</html>
