@@ -9,8 +9,7 @@ export default function Screen02() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    // Fetch products from API
-    fetch('https://6715e63e33bc2bfe40bb786c.mockapi.io/api/vuthekiet/products') 
+    fetch('https://6715e63e33bc2bfe40bb786c.mockapi.io/api/vuthekiet/products')
       .then(response => response.json())
       .then(data => {
         setProducts(data);
@@ -70,32 +69,40 @@ export default function Screen02() {
       <View style={styles.categoryContainer}>
         <TouchableOpacity
           style={styles.categoryButton}
-          onPress={() => filterProducts('All')}  
+          onPress={() => filterProducts('All')}  // Show all products
         >
           <Text style={styles.categoryText}>All</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryButton}
-          onPress={() => filterProducts('Roadbike')}  
+          onPress={() => filterProducts('Roadbike')}  // Show only products with 'bike' in the name
         >
           <Text style={styles.categoryText}>Roadbike</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryButton}
-          onPress={() => filterProducts('Mountain')}  
+          onPress={() => filterProducts('Mountain')}  // Show only products with 'mountain' in the name
         >
           <Text style={styles.categoryText}>Mountain</Text>
         </TouchableOpacity>
       </View>
 
       <FlatList
-        data={filteredProducts}  
+        data={filteredProducts}  // Display filtered products
         renderItem={renderProduct}
         keyExtractor={item => item.id.toString()}
         numColumns={2}
         contentContainerStyle={styles.productList}
         showsVerticalScrollIndicator={false}
       />
+
+      {/* Button to navigate to Screen04 to add a new product */}
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => navigation.navigate('Screen04')}
+      >
+        <Text style={styles.addButtonText}>Thêm Sản Phẩm</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -170,12 +177,23 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   originalPrice: {
-    textDecorationLine: 'line-through',
+    textDecorationLine: 'line-through',  // Strike through the original price
     color: 'gray',
   },
   discountText: {
     fontSize: 14,
     color: 'red',
     fontWeight: 'bold',
+  },
+  addButton: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#E94141',
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  addButtonText: {
+    color: 'white',
+    fontSize: 18,
   },
 });
